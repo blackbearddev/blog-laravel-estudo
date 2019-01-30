@@ -38,7 +38,9 @@ class UserController extends Controller
         //
         echo "<pre>";
         var_dump($request->name);
-        var_dump($request->codigo);
+        var_dump($request->all());
+        var_dump($request->input('id', 'CARAIO')); //ISET
+        var_dump($request->query('query', 'Carario2'));
         echo "</pre>";
     }
 
