@@ -36,12 +36,55 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        echo "<pre>";
-        var_dump($request->name);
-        var_dump($request->all());
-        var_dump($request->input('id', 'CARAIO')); //ISET
-        var_dump($request->query('query', 'Carario2'));
-        echo "</pre>";
+       // echo "<pre>";
+        //var_dump($request->name);
+        //var_dump($request->all());
+       // var_dump($request->input('id', 'CARAIO')); //ISET
+      //  var_dump($request->query('query', 'Carario2'));
+        //var_dump($request->only('name'));
+        //var_dump($request->except(['name', 'codigo']));
+        // if($request->has('name')) //if existe field
+        //     echo "TEM FIELD";
+    
+
+        // if($request->filled('name')) //if empty field
+        //     echo $request->name;
+        // else
+        //     echo "NO"; 
+        //$request->flash(); 
+       // return view('users');   
+        //$value = $request->file('photo');
+        //var_dump($value);
+        
+        //teste if have a file
+        // if($request->hasFile('photo')){
+        //     echohas "<pre>";
+        //     echo $request->photo;
+        //     echo "</pre>";
+
+        // }
+
+        //teste if file is valid
+        if($request->hasFile('photo')){
+            if($request->file('photo')->isValid()){
+                //$path = $request->photo->store('images'); //random file name
+                $path= $request->photo->storeAs('images', 'teste.jpg');
+                echo "<pre>";
+                echo "Uploading...";
+                //echo $request->photo . "<br>";
+                //echo $request->photo->path(). "<br>";
+               // echo $request->photo->extension() . "<br>";                
+               //$url = Storage::url('teste.jpg');
+               //echo $url;
+                echo "</pre>";
+            }    
+        }
+        
+
+
+       // $username = $request->old('name');
+        // echo $username;
+        // echo "</pre>";
     }
 
     /**
