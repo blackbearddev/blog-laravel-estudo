@@ -75,6 +75,10 @@ Route::get("/{locale}/posts", function(){
     echo "ok";
 })->name('posts.index');
 
+Route::get("posts", "PostsController@index");
+Route::post("posts", "PostsController@store");
+
+
 Route::get("json", function(){
     return response()->json([
         'name' => 'carlos',
