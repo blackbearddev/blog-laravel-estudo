@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBlogPost;
 
 class PostsController extends Controller
 {
@@ -12,11 +14,27 @@ class PostsController extends Controller
         return View('posts.index');
     }
 
-    public function store(Request $request)
+    public function store(/*StoreBlogPost $request*/Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'body'=> 'required'
-        ]);
+       //$validated = $request->validated();
+       $messages = [
+        'required' => 'The :attribute é obrigatorio'
+       ];
+       $validator = Validator::make($request->all(), 
+       [
+           'title' => 'required|max:5',
+           'body' => 'required'
+       ], $messages);
+
+       
+
+       
+       if($validator->fails()){
+           return redirect('posts')
+           ->withErrors($validator, "posts")
+           ->withInput();
+       }
+
+       echo "ok";
     }
 }
