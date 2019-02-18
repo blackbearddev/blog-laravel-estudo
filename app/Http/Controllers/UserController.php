@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,7 +15,70 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('users');
+        //$user = DB::select('select * from users where active = :active', ['active' => 1]);
+        //$users = DB::table('users')->get();
+       // $users = DB::table('users')->where('active', 1)->first();
+        //get some fields od db
+        //$users = DB::table('users')->pluck('name');
+        //chunk of recors pega 4 deois mais 4 depois mais 4 e somatudo no final
+        // DB::table("users")->orderBy('id')->chunk(4, function($users){
+        //     echo "<pre>";
+        //     var_dump($users);
+        //     echo "</pre>";
+        // }); 
+
+        //agregados
+        //$users = DB::table('users')->count();
+        //$users = DB::table('users')->max('name');
+
+        //exists
+        //$users = DB::table('users')->where('active', 1)->exists();
+        
+        //$users = DB::table('users')->select('name', 'id as id_user')->get();
+        
+        //$users = DB::table('users')->distinct()->get();
+        
+        // $users = DB::table('users')
+        //     ->select(DB::raw('count(*) as user_count, id'))
+        //     ->where('active', '<>' , 0)
+        //     ->groupBy('active')
+        //     ->get();
+
+        // $users = DB::table('users')
+        // ->selectRaw('id * ? as idd', [0.25])
+        // ->get();
+
+//        $users = DB::table('users')
+//                    ->join('profile', 'users.id', '=' , 'profile.userid')
+//                    ->select('users.name', 'users.id', 'profile.photo', 'profile.subs')
+//                    ->get();
+//
+
+        //$users = DB::table('users')->where('id' , '<=' , 4)->get();
+//        //with like
+//        $users = DB::table('users')
+//            ->where('name', 'like', 'C%')->get();
+
+        //query and
+//        $users = DB::table('users')->where([
+//            ['name', 'like' , 'C%'],
+//            ['active', '<>' , '0']
+//        ])->get();
+//
+//      //query OR
+
+        $users = DB::table('users')
+            ->where('id', '>' , 20)
+            ->orWhere('name' , 'Carlos')
+            ->get();
+
+
+        echo "<pre>";
+        var_dump($users);
+        echo "</pre>";
+
+       // return $users;
+        //return view('users');
     }
 
     /**
@@ -24,7 +88,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
+
+    }
+
+    public function newone()
+    {
+        $user= DB::insert('insert into users (name, active) values (:name, :active)', ['name' => "blackbearddev2", 'active' => 1]);
+        echo "<pre>";
+        var_dump($user);
+        echo "</pre>";
     }
 
     /**

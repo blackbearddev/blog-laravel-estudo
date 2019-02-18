@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 Route::get("user/{id}", function($id){
     return 'User ' . $id;
 });
@@ -68,6 +71,7 @@ Route::resource('photos', 'PhotoController');
 // ]);
 
 Route::get("users", 'UserController@index');
+Route::get("users/new", 'UserController@newone');
 Route::get("users/{id}", 'UserController@show');
 Route::post("users/create", 'UserController@store');
 
