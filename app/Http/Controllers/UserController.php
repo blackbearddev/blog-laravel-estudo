@@ -67,14 +67,45 @@ class UserController extends Controller
 //
 //      //query OR
 
-        $users = DB::table('users')
-            ->where('id', '>' , 20)
-            ->orWhere('name' , 'Carlos')
-            ->get();
+        // $users = DB::table('users')
+        //     ->where('id', '>' , 20)
+        //     ->orWhere('name' , 'Carlos')
+        //     ->get();
 
+        // $users = DB::table('users')
+        //     ->orderBy('id', 'desc')
+        //     ->where('active', '1')
+        //     ->get();
+        
+
+        //im random order
+        // $users = DB::table('users')
+        //     ->inRandomOrder()
+        //     ->limit(2)
+        //     ->get();
+    
+
+        // //update
+        // $users = DB::table('users')->where('id', 3)
+        // ->update(['name' => 'caraio']);
+
+       // $users = DB::table('users')->increment('views', 1, ['id'=>1]);
+        
+        
+       //$flights = \App\Flight::all();
+
+        //save
+    //    $flight = new \App\Flight;
+
+    //    $flight->destination  = "New York";
+    //    $flight->save();
+
+          $flight = \App\Flight::find(1);
+          $flight->destination = 'San Francisco';
+          $flight->save();  
 
         echo "<pre>";
-        var_dump($users);
+        var_dump($flight);
         echo "</pre>";
 
        // return $users;
