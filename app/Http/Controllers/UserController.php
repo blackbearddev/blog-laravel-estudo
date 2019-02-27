@@ -100,13 +100,34 @@ class UserController extends Controller
     //    $flight->destination  = "New York";
     //    $flight->save();
 
-          $flight = \App\Flight::find(1);
-          $flight->destination = 'San Francisco';
-          $flight->save();  
+        //   $flight = \App\Flight::find(1);
+        //   $flight->destination = 'San Francisco';
+        //   $flight->save();  
 
-        echo "<pre>";
-        var_dump($flight);
-        echo "</pre>";
+        //$users = \App\User::find(1)->phone;
+        //$users = \App\Phone::find(1)->user;
+        $users = \App\User::find(1)->comments;
+        
+        foreach($users as $user):
+            echo "<pre>";
+            echo $user->texto;
+            echo "</pre>";
+        endforeach;
+
+        echo "<hr>";
+
+        $usersc = \App\Comments::find(1)->user;
+        echo $usersc->name;
+
+        echo "<hr>";
+
+        $usesp = \App\User::find(1)->posts;
+         foreach($usesp as $user):
+            echo "<pre>";
+            echo $user->title;
+            echo "</pre>";
+        endforeach;
+
 
        // return $users;
         //return view('users');
